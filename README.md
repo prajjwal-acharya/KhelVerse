@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Athlete Management Platform - Contribution Guide
 
-## Getting Started
+Welcome to the Athlete Management Platform! 🚀  
+We appreciate your interest in contributing to this project. Please follow the steps below to set up your development environment and contribute effectively.
 
-First, run the development server:
+---
+
+## 📌 How to Contribute
+
+### 1️⃣ Fork the Repository
+
+To contribute, first, fork the repository:
+
+1. Click the **Fork** button at the top-right corner of this repository on GitHub.
+2. This will create a copy of the repo under your GitHub account.
+
+---
+
+### 2️⃣ Clone Your Fork
+
+Once you've forked the repo, clone it to your local machine:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/YOUR_GITHUB_USERNAME/apts.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Replace `YOUR_GITHUB_USERNAME` with your actual GitHub username.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3️⃣ Set Up the Upstream Repository
 
-## Learn More
+To keep your fork updated with the main repository, add the upstream repo:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cd apts
+git remote add upstream https://github.com/blessedamritas-projects/apts.git
+git remote -v  # Verify remotes
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Now, your repo has two remotes:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `origin` → Your forked repo
+- `upstream` → The main project repo
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4️⃣ Create a New Branch
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Always work on a new branch instead of the `main` branch.
+
+```bash
+git checkout -b feature-name
+```
+
+**Example:**
+
+```bash
+git checkout -b add-dashboard-ui
+```
+
+---
+
+### 5️⃣ Make Your Changes
+
+Add your code changes.  
+Test your changes before committing.
+
+---
+
+### 6️⃣ Commit & Push
+
+Once you're happy with your changes, commit them:
+
+```bash
+git add .
+git commit -m "feat: add Dashboard UI"
+```
+
+**Commit Message Guidelines:**
+
+Use the following prefixes for better clarity:
+- `feat:` → Adding a new feature (e.g., `feat: add dashboard UI`)
+- `fix:` → Fixing a bug (e.g., `fix: resolve login issue`)
+- `chore:` → Changes to build process or auxiliary tools (e.g., `chore: update dependencies`)
+- `style:` → Changes that do not affect the code's logic (e.g., `style: format code`)
+- `test:` → Adding or updating tests (e.g., `test: add tests for auth module`)
+
+Now, push your branch to your forked repo:
+
+```bash
+git push origin feature-name
+```
+
+---
+
+### 7️⃣ Create a Pull Request (PR)
+
+1. Go to your forked repository on GitHub.
+2. Click the **"Compare & pull request"** button.
+3. Make sure the base branch is `main` of the original repo.
+4. Add a clear title and description of your changes.
+5. Click **"Create pull request"**.
+
+🚀 Now, wait for the maintainers to review your PR!
+
+---
+
+## 🔄 Keeping Your Fork Updated
+
+To avoid merge conflicts, update your fork regularly:
+
+```bash
+git checkout main  # Switch to main branch
+git fetch upstream   # Fetch latest changes
+git merge upstream/main  # Merge changes into local main
+git push origin main  # Update your forked repo
+```
+
+---
+
+## 📜 Contribution Guidelines
+
+- ✔️ Follow coding standards (ESLint & Prettier are enforced).
+- ✔️ Write clear commit messages.
+- ✔️ Keep PRs small and focused on a single feature or fix.
+- ✔️ Ensure your code works before submitting a PR.
+
+---
+
+## 📬 Need Help?
+
+If you have any issues, feel free to open an issue or ask in the discussions! 🎯
+
+---
+
+Happy coding! 🚀
+
