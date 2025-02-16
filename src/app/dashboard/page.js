@@ -6,7 +6,7 @@ function DashboardPage() {
     //here we will add conditional rendering (of dashboard view) for different users: athlete,coach,sponsor
     <div className="text-wrap">
       <h1 className="text-2xl font-bold">Dashboard</h1>
-      <p className="text-pink-200">Here we will add conditional rendering (of dashboard view) for different users: athlete,coach,sponsor</p>
+      <p className="text-green-400">Here we will add conditional rendering (of dashboard view) for different users: athlete,coach,sponsor</p>
       <p>Select a section to navigate to:</p>
       <ul className="mt-4 list-disc pl-6">
         <li><Link href="/training" className="text-blue-600">Training</Link></li>
