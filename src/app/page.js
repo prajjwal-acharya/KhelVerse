@@ -1,15 +1,44 @@
+import AboutUs from "@/components/landingPage/AboutUs";
+import Features from "@/components/landingPage/Features";
+import HeroSection from "@/components/landingPage/HeroSection";
+import Mission from "@/components/landingPage/Mission";
+import Testimonials from "@/components/landingPage/Testimonials";
 import Link from "next/link";
 export default function Home() {
   return (
     <div className="">
-      <h1 className="text-4xl font-bold text-center">Welcome to APTS</h1>
       <div className="text-center">
-      <h1 className="text-3xl font-bold">Athlete Management Platform</h1>
-      <p className="mt-4">Manage your training, tournaments, and finances efficiently.</p>
-      <Link href="/dashboard" className="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded">
-        Go to Dashboard
-      </Link>
-    </div>
+        <section
+          id="hero"
+          className="h-auto bg-gray-200 flex items-center justify-center"
+        >
+          <HeroSection/>
+        </section>
+        <section
+          id="about"
+          className="h-auto bg-white flex items-center justify-center"
+        >
+          <AboutUs/>
+        </section>
+        <section
+          id="mission"
+          className="h-auto bg-gray-100 flex items-center justify-center"
+        >
+          <Mission/>
+        </section>
+        <section
+          id="features"
+          className="h-auto bg-white flex items-center justify-center"
+        >
+          <Features/>
+        </section>
+        <section
+          id="testimonials"
+          className="h-auto bg-gray-100 flex items-center justify-center"
+        >
+          <Testimonials/>
+        </section>
+      </div>
     </div>
   );
 }
