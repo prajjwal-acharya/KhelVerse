@@ -1,4 +1,6 @@
 "use client";
+import Graph from "@/components/dashboard/athlete/Graph";
+import Heatmap from "@/components/dashboard/athlete/Heatmap";
 import Link from "next/link";
 
 function DashboardPage() {
@@ -14,6 +16,8 @@ function DashboardPage() {
         <li><Link href="/finance" className="text-blue-600">Finance</Link></li>
         <li><Link href="/profile" className="text-blue-600">Profile</Link></li>
       </ul>
+      <Graph/>
+      <Heatmap/>
     </div>
   );
 }
