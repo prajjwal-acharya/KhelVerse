@@ -12,18 +12,18 @@ html{
 .react-calendar-heatmap .color-empty {
   fill: #1d201d !important; 
 }
-.react-calendar-heatmap .color-scale-1 {
+.react-calendar-heatmap .color-scale-5 {
   fill: #c6e48b;
 }
-.react-calendar-heatmap .color-scale-2 {
+.react-calendar-heatmap .color-scale-4 {
   fill: #7bc96f;
 }
 .react-calendar-heatmap .color-scale-3 {
   fill: #239a3b;
 }
-.react-calendar-heatmap .color-scale-4 {
+.react-calendar-heatmap .color-scale-2 {
   fill: #196127;
 }
-.react-calendar-heatmap .color-scale-5 {
+.react-calendar-heatmap .color-scale-1 {
   fill: #0e4429;
 }
