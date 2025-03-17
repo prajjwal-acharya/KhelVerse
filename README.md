@@ -80,6 +80,7 @@ git commit -m "feat: add Dashboard UI"
 **Commit Message Guidelines:**
 
 Use the following prefixes for better clarity:
+
 - `feat:` → Adding a new feature (e.g., `feat: add dashboard UI`)
 - `fix:` → Fixing a bug (e.g., `fix: resolve login issue`)
 - `chore:` → Changes to build process or auxiliary tools (e.g., `chore: update dependencies`)
@@ -135,4 +136,3 @@ If you have any issues, feel free to open an issue or ask in the discussions! �
 ---
 
 Happy coding! 🚀
-
