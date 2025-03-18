@@ -14,7 +14,7 @@ function Testimonials() {
   
     <div className="w-full h-auto bg-white">
       <div className=" h-full w-full py-[50px] flex flex-col items-center pt-20">
-        <h3 className="font-thuast text-[30px]">WHAT OUR CLIENTS SAY</h3>
+        <h3 className="font-thuast text-2xl sm:text-3xl">WHAT OUR CLIENTS SAY</h3>
         <Underline height={6} width={200} fill="black" />
       </div>
       {/* Infinite Moving Cards Section */}
