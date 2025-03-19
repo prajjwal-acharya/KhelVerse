@@ -20,7 +20,7 @@ function AthleteHero() {
     style={{
       boxShadow: '0 4px 6px rgba(0, 0, 0, 0.486), 0 10px 15px rgba(0, 0, 0, 0.448), 0 15px 30px rgba(0, 0, 0, 0.305)',
     }}> 
-      <h1 className='text-xl font-bold font-sprintura'>Hey Champ!</h1>
+      <h1 className='text-xl font-semibold font-sprintura tracking-widest'>Hey Champ!</h1>
       <div className="flex gap-[20px] items-center">
         <p className='text-md font-semibold font-poppins tracking-wider'>{today}</p>
         <div
