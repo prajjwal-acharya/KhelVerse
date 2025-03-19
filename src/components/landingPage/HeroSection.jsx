@@ -1,57 +1,76 @@
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation"; // Next.js router for navigation
-import { signInWithGoogle } from "@/firebase/auth"; // Import login function
-import {useDispatch} from "react-redux"
+import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
 
 function HeroSection() {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  
-  
-  const handleGetStarted = async () => {
-    const { user, isNewUser } = await signInWithGoogle(dispatch); // ✅ Remove `router` from argument
-  
-    if (user) {
-      console.log("User Logged In:", user);
-      
-      if (isNewUser) {
-        router.push("/onboardingForm"); // 🆕 New user → Role selection
-      } else if (user.role) {
-        router.push(`/dashboard/${user.role}`); // ✅ Existing user → Redirect to role-based dashboard
-      } else {
-        router.push("/onboardingForm"); // Edge case: No role set
-      }
-    }
-  };
+  const words = ["Elevating","Redefining", "Advancing"];
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }, 2000); // Change word every 2 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
 
   return (
-    <div className="relative h-screen w-full text-white">
-      {/* Background Video */}
-      <video autoPlay loop muted playsInline className="absolute top-0 left-0 w-full h-full object-cover">
-        <source src="/indiaOlympics.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <div className="relative w-full h-screen overflow-hidden">
+      
+      {/* Video Background from Cloudinary */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover brightness-60" // Darkened video effect
+        src="https://res.cloudinary.com/dgj1gzq0l/video/upload/v1742293340/herovideo_kr5ugk.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
 
-      {/* Translucent Black Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
+      {/* Overlay to enhance text visibility */}
+      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-70" />
 
-      {/* Overlay Content */}
-      <div className="relative flex flex-col items-center justify-center h-full w-full text-center px-4">
-        <h1 className="font-sprintura text-[70px] tracking-wider">APTS</h1>
-        <h2 className="text-[48px]">Empowering India's Athletes, One Click at a Time</h2>
-        <p>Your talent deserves more than just hard work—it needs the right support.</p>
-        <p>Welcome to the future of athlete management, where technology meets passion.</p>
-        <span>Track. Train. Triumph.</span>
-        <span>One platform, endless possibilities.</span>
-        <button
-          onClick={handleGetStarted} // Trigger Google login
-          className="mt-4 px-6 py-3 rounded-2xl bg-lavender text-black font-semibold hover:bg-purple-300 transition"
-        >
-          Get Started
+      {/* Main Content */}
+      <motion.div
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.8, ease: "easeInOut" }}
+        className="relative flex flex-col gap-4 items-center justify-center h-full text-white text-center px-4"
+      >
+        <h1 className="font-sprintura md:text-[70px] text-[50px] tracking-wider">APTS</h1>
+
+        {/* Changing Word Effect */}
+        <h2 className="md:text-[48px] text-[35px] font-thuast ">
+  <span
+    className="inline-block text-lavender"
+    style={{ width: "370px", textAlign: "center" }} // Fixed width & center align
+  >
+    <motion.span
+      key={index}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
+      transition={{ duration: 0.5 }}
+      className="inline-block"
+    >
+      {words[index]}
+    </motion.span>
+  </span>{" "}
+  Indian Athletes
+</h2>
+
+
+        {/* <p>Your talent deserves more than just hard work—it needs the right support.</p> */}
+        <p className="text-lg">Welcome to the future of athlete management, where technology meets passion.</p>
+        {/* <span className="font-bold">Track. Train. Triumph.</span> */}
+        <span className="text-xl font-bold">One platform, endless possibilities.</span>
+
+        <button className="font-bold font-sprintura w-auto mt-9 px-[20px] py-[5px] rounded-2xl bg-lavender text-black shadow-none hover:text-white hover:bg-purple hover:shadow-2xl transition-all">
+          GET STARTED
         </button>
-      </div>
+      </motion.div>
+      
     </div>
   );
 }
