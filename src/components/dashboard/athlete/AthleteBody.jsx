@@ -5,6 +5,8 @@ import AthleteCard from './AthleteCard';
 import DailyTask from './DailyTask';
 import Events from './Events';
 import Heatmap from './Heatmap';
+import Finance from './Finance';
+import { Notification } from './Notification';
 
 function AthleteBody() {
   const router = useRouter();
@@ -58,9 +60,9 @@ function AthleteBody() {
 
   return (
     <div className='h-auto w-full flex flex-col gap-5 justify-evenly px-[10px]'>
-      <div className="w-full h-[170px] flex gap-[5px] ">
+      <div className="w-full h-[200px] flex gap-[5px] ">
         <DailyTask/>
-        <Events/>
+        <Notification/>
       </div>
       
       <div className='h-auto flex flex-col gap-5'>
@@ -72,6 +74,10 @@ function AthleteBody() {
         </div>
       </div>
       <Heatmap/>
+      <div className="w-full h-[200px] flex gap-[20px]">
+        <Events/>
+        <Finance/>  
+      </div>
 
     </div>
   );

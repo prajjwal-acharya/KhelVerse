@@ -49,7 +49,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className={`fixed top-0 left-0 h-full ${isOpen ? "w-64" : "w-16"} transition-all bg-[#150721] text-white pt-[20px] pl-[20px] border-r-[2px] border-white`}>
+    <aside className={`fixed top-0 left-0 h-full ${isOpen ? "w-64" : "w-16"} transition-all bg-[#e8e7e7] text-black pt-[20px] pl-[20px] border-r-[2px] border-white`}>
       {/* Sidebar Toggle */}
       <div className=" flex gap-[5px] items-center justify-between mb-[20px]">
         <h2 className="text-2xl font-sprintura ">APTS</h2>
