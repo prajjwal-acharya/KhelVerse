@@ -1,12 +1,12 @@
-import OrganizationMain from '@/components/dashboard/organization/OrganizationMain'
-import React from 'react'
+import OrganizationMain from '@/components/dashboard/organization/OrganizationMain';
+import React from 'react';
 
 function page() {
   return (
     <div>
-        <OrganizationMain/>
+      <OrganizationMain />
     </div>
-  )
+  );
 }
 
-export default page
+export default page;

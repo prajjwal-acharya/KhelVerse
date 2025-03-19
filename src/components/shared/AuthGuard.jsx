@@ -1,7 +1,7 @@
-"use client";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/navigation";
+'use client';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 const AuthGuard = ({ children }) => {
   const { user } = useSelector((state) => state.user);
@@ -9,7 +9,7 @@ const AuthGuard = ({ children }) => {
 
   useEffect(() => {
     if (!user) {
-      router.push("/onboardingForm"); // Redirect to Login if not authenticated
+      router.push('/onboardingForm'); // Redirect to Login if not authenticated
     }
   }, [user, router]);
 

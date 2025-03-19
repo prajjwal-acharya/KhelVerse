@@ -1,6 +1,7 @@
 # Gemini Bot - AI Chat & Analysis
 
 ## Overview
+
 This Jupyter Notebook provides an interface to interact with Google's Gemini AI using the `google.generativeai` library. It allows users to:
 
 - Set up and configure Gemini AI using an API key.
@@ -9,6 +10,7 @@ This Jupyter Notebook provides an interface to interact with Google's Gemini AI 
 - Use a function to **predict injury risks** based on player health and training data.
 
 ## Prerequisites
+
 Before running the notebook, ensure you have the following installed:
 
 ```bash
@@ -20,6 +22,7 @@ Additionally, you need a **Gemini API key**, which can be obtained from Google A
 ## How to Use
 
 ### 1️⃣ Set Up API Key
+
 Replace `YOUR_API_KEY_HERE` with your actual Gemini AI API key.
 
 ```python
@@ -30,6 +33,7 @@ genai.configure(api_key=API_KEY)
 ```
 
 ### 2️⃣ Generate AI Responses
+
 You can interact with the AI using the `gemini-2.0-flash` model:
 
 ```python
@@ -39,6 +43,7 @@ print(response.text)
 ```
 
 ### 3️⃣ List Available Models
+
 To see which models are available:
 
 ```python
@@ -47,6 +52,7 @@ for model in genai.list_models():
 ```
 
 ### 4️⃣ Predict Injury Risk (Example Function)
+
 The notebook includes a function to predict injury risks based on player data. Example usage:
 
 ```python
@@ -68,13 +74,16 @@ print(result)
 ```
 
 ## Notes
+
 - The API key should be kept **private** and **not shared** in public repositories.
 - Ensure that you comply with **Google AI's Terms of Service** while using the API.
 
 ## Future Enhancements
+
 - Add a **web-based interface** using Flask or Streamlit.
 - Improve the **injury risk prediction** function with real-world datasets.
 - Implement **fine-tuning** using Google AI's latest models.
 
 ## License
+
 This project is for educational purposes. Ensure ethical AI usage and proper data privacy when deploying models.
