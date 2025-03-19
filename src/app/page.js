@@ -3,11 +3,12 @@ import Features from "@/components/landingPage/Features";
 import HeroSection from "@/components/landingPage/HeroSection";
 import Mission from "@/components/landingPage/Mission";
 import Testimonials from "@/components/landingPage/Testimonials";
+import Profiles from "@/components/landingPage/Profiles";
 import Link from "next/link";
 export default function Home() {
   return (
     <div className="">
-      <div className="text-center">
+      <div className="text-center p-0">
         <section
           id="hero"
           className="h-auto bg-gray-200 flex items-center justify-center"
@@ -25,6 +26,12 @@ export default function Home() {
           className="h-auto bg-gray-100 flex items-center justify-center"
         >
           <Mission/>
+        </section>
+        <section
+          id="profiles"
+          className="h-auto bg-white flex items-center justify-center"
+        >
+          <Profiles/>
         </section>
         <section
           id="features"

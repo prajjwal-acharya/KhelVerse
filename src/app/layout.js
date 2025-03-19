@@ -36,11 +36,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sprintura.variable} ${thuast.variable} antialiased`}
+        className={`overflow-x-hidden ${geistSans.variable} ${geistMono.variable} ${sprintura.variable} ${thuast.variable} antialiased`}
       >
         <div className="min-h-screen flex flex-col">
           <Navbar />
-          <main className="p-6">{children}</main>
+          <main className="p-0">{children}</main>
         </div>
         <Footer />
       </body>
