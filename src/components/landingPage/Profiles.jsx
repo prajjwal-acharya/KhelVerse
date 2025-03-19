@@ -4,7 +4,7 @@ function Profiles() {
   return (
     <div className="w-full h-screen bg-white flex flex-col justify-center items-center">
 
-      <div className="w-[350px] md:w-[800px] h-[85%] flex flex-col justify-center items-center">
+      <div className="w-[400px] md:w-[800px] h-[85%] flex flex-col justify-center items-center">
         <div className="h-1/3 flex justify-center items-center">
           <img 
             src="https://res.cloudinary.com/dgj1gzq0l/image/upload/v1742274119/atheletedash_pgsvuv.svg" 
@@ -38,7 +38,7 @@ function Profiles() {
           <h2 className='font-bold text-sm md:text-lg font-sprintura'>COACH</h2>
           </div>
 
-          <div className='h-full m-2'>
+          <div className='h-full m-2 '>
           <img 
             src="https://res.cloudinary.com/dgj1gzq0l/image/upload/v1741860780/MobMockup_h92jct.jpg" 
             alt="sponsor" 
