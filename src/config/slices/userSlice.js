@@ -7,11 +7,11 @@ const initialState = {
   photoURL: null,
   isAuthenticated: false,
   isOnboarded: false,
-  role: "guest",
+  role: 'guest',
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setUser: (state, action) => {

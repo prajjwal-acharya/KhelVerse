@@ -1,12 +1,12 @@
-import CoachMain from '@/components/dashboard/coach/CoachMain'
-import React from 'react'
+import CoachMain from '@/components/dashboard/coach/CoachMain';
+import React from 'react';
 
 function page() {
   return (
     <div>
-        <CoachMain/>
+      <CoachMain />
     </div>
-  )
+  );
 }
 
-export default page
+export default page;

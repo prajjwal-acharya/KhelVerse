@@ -1,13 +1,13 @@
-import { Input } from "@/components/ui/input";
+import { Input } from '@/components/ui/input';
 
 export default function Step2({ formData, setFormData }) {
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">Sports & Experience</h2>
+      <h2 className='text-xl font-bold mb-4'>Sports & Experience</h2>
 
       <label>Sport</label>
       <Input
-        placeholder="Enter primary sport"
+        placeholder='Enter primary sport'
         value={formData.sport}
         onChange={(e) => setFormData({ ...formData, sport: e.target.value })}
       />
@@ -16,7 +16,7 @@ export default function Step2({ formData, setFormData }) {
       <select
         value={formData.experienceLevel}
         onChange={(e) => setFormData({ ...formData, experienceLevel: e.target.value })}
-        className="border p-2 w-full"
+        className='border p-2 w-full'
       >
         <option>Beginner</option>
         <option>Intermediate</option>
@@ -25,4 +25,3 @@ export default function Step2({ formData, setFormData }) {
     </div>
   );
 }
-

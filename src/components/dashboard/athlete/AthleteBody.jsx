@@ -60,25 +60,23 @@ function AthleteBody() {
 
   return (
     <div className='h-auto w-full flex flex-col gap-5 justify-evenly px-[10px]'>
-      <div className="w-full h-[200px] flex gap-[5px] ">
-        <DailyTask/>
-        <Notification/>
+      <div className='w-full h-[200px] flex gap-[5px] '>
+        <DailyTask />
+        <Notification />
       </div>
-      
+
       <div className='h-auto flex flex-col gap-5'>
-        
         <div className='flex gap-5 flex-wrap justify-evenly'>
           {cards.map((card, index) => (
             <AthleteCard key={index} {...card} />
           ))}
         </div>
       </div>
-      <Heatmap/>
-      <div className="w-full h-[200px] flex gap-[20px]">
-        <Events/>
-        <Finance/>  
+      <Heatmap />
+      <div className='w-full h-[200px] flex gap-[20px]'>
+        <Events />
+        <Finance />
       </div>
-
     </div>
   );
 }

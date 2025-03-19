@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function CoachMain() {
-  return (
-    <div>CoachMain</div>
-  )
+  return <div>CoachMain</div>;
 }
 
-export default CoachMain
+export default CoachMain;

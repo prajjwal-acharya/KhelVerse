@@ -73,9 +73,9 @@ export default function RootLayout({ children }) {
       >
         <Provider store={store}>
           <div className='min-h-screen flex flex-col'>
-            <div className='flex min-h-screen'>
+            <div className='flex min-h-screen relative'>
               <Sidebar />
-              <main className='flex-grow ml-16 md:ml-64 transition-all'>{children}</main>
+              <main className='flex-grow transition-all'>{children}</main>
             </div>
           </div>
           <Footer />

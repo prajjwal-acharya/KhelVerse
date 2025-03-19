@@ -1,12 +1,12 @@
-import AthleteMain from '@/components/dashboard/athlete/AthleteMain'
-import React from 'react'
+import AthleteMain from '@/components/dashboard/athlete/AthleteMain';
+import React from 'react';
 
 function page() {
   return (
     <div>
-        <AthleteMain/>
+      <AthleteMain />
     </div>
-  )
+  );
 }
 
-export default page
+export default page;
