@@ -1,0 +1,13 @@
+frontend/node_modules/
+
+# Ignore virtual environments
+apts-chatbot-api/**/venv/
+
+# Ignore virtual environments
+raw_models/**/venv/
+raw_models/**/__pycache__/
+raw_models/**/Lib/site-packages/
+
+# Ignore any other common files
+*.log
+*.env
