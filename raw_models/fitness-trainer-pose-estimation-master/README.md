@@ -14,17 +14,20 @@ An AI-powered web application that tracks exercises using computer vision and pr
 ## Installation
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/yourusername/fitness-trainer-pose-estimation.git
    cd fitness-trainer-pose-estimation
    ```
 
 2. Install dependencies:
+
    ```
    pip install -r requirements.txt
    ```
 
 3. Set up the static folder structure:
+
    ```
    mkdir -p static/images
    ```
@@ -37,11 +40,13 @@ An AI-powered web application that tracks exercises using computer vision and pr
 ## Usage
 
 1. Start the Flask server:
+
    ```
    python app.py
    ```
 
 2. Open a web browser and navigate to:
+
    ```
    http://127.0.0.1:5000
    ```
