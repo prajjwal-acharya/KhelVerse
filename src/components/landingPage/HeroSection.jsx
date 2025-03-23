@@ -73,7 +73,7 @@ function HeroSection() {
               transition={{ duration: 0.5 }}
               className='inline-block'
             >
-              {words[index]} 
+              {words[index]}
             </motion.span>
           </span>{' '}
           Indian Athletes
