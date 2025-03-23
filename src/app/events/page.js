@@ -1,7 +1,10 @@
+import EventsMain from '@/components/events/EventsMain';
 import React from 'react';
 
 function page() {
-  return <div>This is the events page</div>;
+  return <div>
+    <EventsMain/>
+  </div>;
 }
 
 export default page;
