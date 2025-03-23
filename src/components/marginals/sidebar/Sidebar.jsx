@@ -73,7 +73,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-min-screen bg-[#e8e7e7] ">
+    <div className='h-min-screen bg-[#e8e7e7] '>
       <aside
         className={`sticky top-0 left-0 h-auto pb-[50px] ${isOpen ? 'w-64' : 'w-16'} transition-all bg-[#e8e7e7] text-black pt-[20px] pl-[20px] border-r-[2px] border-white`}
       >

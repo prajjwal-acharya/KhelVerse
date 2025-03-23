@@ -10,7 +10,8 @@ You need to place these files in this directory (`/static/images/`).
 
 ## Options:
 
-1. **Use your own images**: 
+1. **Use your own images**:
+
    - Find or create suitable images for each exercise
    - Rename them as specified above
    - Place them in this directory

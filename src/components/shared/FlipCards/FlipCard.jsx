@@ -1,37 +1,21 @@
 import React from 'react';
 import './style.css';
 
-export function FlipCard({
-  titleFront,
-  titleBack,
-  frontText,
-  backText,
-  frontImage,
-  gradientBack,
-  className = '',
-}) {
+export function FlipCard({ titleFront, frontText, backText, gradientBack, className = '' }) {
   return (
-    <div className={`flip-card ${className}`}>
-      <div className='flip-card-inner'>
-        {/* Front Side */}
-        <div
-          className='flip-card-front bg-black bg-cover bg-center bg-opacity-40'
-          style={{
-            backgroundImage: `url(${frontImage})`,
-            backgroundBlendMode: 'overlay',
-            backgroundColor: 'rgba(0, 0, 0, 0.7)', // Darkening effect
-          }}
-        >
-          <p className='text-lg font-bold font-sprintura text-lavender'>{titleFront}</p>
-          <p className='text-m font-semibold'>{frontText}</p>
-        </div>
-
-        {/* Back Side */}
-        <div className={`flip-card-back bg-black bg-gradient-to-tl ${gradientBack}`}>
-          <p className='text-lg font-bold'>{titleBack}</p>
-          <p className='text-sm p-2'>{backText}</p>
-        </div>
+    <div
+      className={`flip-card ${className} ${gradientBack} bg-gradient-to-br from-[#0e0e16] to-[#161625]
+    hover:from-black hover:to-[#240046]`}
+    >
+      {/* Front Side */}
+      <div className='flip-card-content'>
+        <p className='title font-sprintura text-lavender text-xl h-[56px]'>{titleFront}</p>
+        <p className='text text-md my-2'>{frontText}</p>
+        <p className='back-text'>{backText}</p>
       </div>
+
+      {/* Loading Line Effect */}
+      <div className='loading-line'></div>
     </div>
   );
 }
