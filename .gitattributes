@@ -1,2 +1,4 @@
-raw_models/fitness-trainer-pose-estimation-master/venv/Lib/site-packages/* filter=lfs diff=lfs merge=lfs -text
+raw_models/fitness-trainer-pose-estimation-master/venv/Lib/site-packages/*.pyd filter=lfs diff=lfs merge=lfs -text
+raw_models/fitness-trainer-pose-estimation-master/venv/Lib/site-packages/*.dll filter=lfs diff=lfs merge=lfs -text
+raw_models/fitness-trainer-pose-estimation-master/venv/Lib/site-packages/*.so filter=lfs diff=lfs merge=lfs -text
 raw_models/fitness-trainer-pose-estimation-master/venv/Scripts/* filter=lfs diff=lfs merge=lfs -text
