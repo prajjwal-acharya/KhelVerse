@@ -5,6 +5,7 @@ import time
 import sys
 import traceback
 import logging
+from flask_cors import CORS
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG, 
@@ -54,7 +55,7 @@ except ImportError:
 logger.info("Setting up Flask application")
 app = Flask(__name__)
 app.secret_key = 'fitness_trainer_secret_key'  # Required for sessions
-
+CORS(app)
 # Global variables
 camera = None
 output_frame = None
