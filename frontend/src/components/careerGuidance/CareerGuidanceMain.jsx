@@ -1,9 +1,20 @@
-import React from 'react'
+import React from 'react';
+import FeatureHero from '../shared/FeatureHero';
+import CareerAdviceResult from './CareerAdviceResult';
+import JobListings from './JobListings';
+import Sponsorships from './Sponsorships';
 
-function CareerGuidanceMain() {
+function DietMain() {
   return (
-    <div>CareerGuidanceMain</div>
-  )
+    <div className='w-full'>
+      <FeatureHero
+        title={'Career Guidance'}
+      />
+      <CareerAdviceResult/>
+      <JobListings/>
+      <Sponsorships/>
+    </div>
+  );
 }
 
-export default CareerGuidanceMain
+export default DietMain;

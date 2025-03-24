@@ -6,11 +6,14 @@ import {
   BarChart,
   Settings,
   LogOut,
+  LogIn,
+  Target,
   Menu,
   Salad,
   HeartPulse,
   Dumbbell,
   ChartColumnIncreasing,
+  CircleHelp,
 } from 'lucide-react'; 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -36,7 +39,7 @@ const Sidebar = () => {
     athlete: [
       { name: 'Dashboard', path: '/dashboard/athlete', icon: BarChart },
       { name: 'Profile', path: '/dashboard/athlete/profile', icon: User },
-      { name: 'Targets', path: '/dashboard/athlete/targets', icon: Calendar },
+      { name: 'Targets', path: '/dashboard/athlete/targets', icon: Target },
       { name: 'Diet Plan', path: '/dashboard/athlete/diet', icon: Salad },
       { name: 'Injury', path: '/dashboard/athlete/injury', icon: HeartPulse },
       { name: 'Training', path: '/dashboard/athlete/training', icon: Dumbbell },
@@ -46,7 +49,7 @@ const Sidebar = () => {
         icon: ChartColumnIncreasing,
       },
       { name: 'Events', path: '/events', icon: Calendar },
-      { name: 'Career Guidance', path: '/dashboard/athlete/careerGuidance', icon: Calendar },
+      { name: 'Career Guidance', path: '/dashboard/athlete/careerGuidance', icon: CircleHelp },
     ],
     coach: [
       { name: 'Dashboard', path: '/dashboard/coach', icon: BarChart },

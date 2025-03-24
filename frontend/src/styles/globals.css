@@ -92,3 +92,63 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+
+
+@layer components {
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated;
+  }
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-subtle;
+  }
+  .job-card {
+    @apply relative overflow-hidden rounded-2xl bg-white border border-border p-5 shadow-subtle
+    transition-all duration-300 hover:shadow-card;
+  }
+  .button-primary {
+    @apply bg-lavender text-white shadow-subtle hover:bg-lavender/80 inline-flex items-center justify-center 
+    rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 
+    focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2;
+  }
+  .button-secondary {
+    @apply bg-black text-white shadow-subtle hover:bg-black/80 inline-flex items-center justify-center 
+    rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 
+    focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2;
+  }
+  .button-outline {
+    @apply border border-input bg-transparent hover:bg-accent/10 hover:text-accent-foreground inline-flex 
+    items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none 
+    focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2;
+  }
+  .subtle-glass-effect {
+    @apply bg-white/70 backdrop-blur-md border border-white/10 shadow-subtle;
+  }
+  .section-heading {
+    @apply text-xl md:text-2xl font-display font-medium tracking-tight mb-6;
+  }
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-lavender to-lavender/70;
+  }
+  .gradient-bg {
+    @apply bg-gradient-to-tr from-lavender to-lavender/80;
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+}

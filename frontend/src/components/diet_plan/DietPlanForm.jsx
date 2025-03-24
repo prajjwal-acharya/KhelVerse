@@ -128,7 +128,7 @@ export default function DietPlanForm({ onSubmit }) {
 
         {/* Submit Button */}
         <Button type="submit" className="w-full  bg-lavender text-black rounded-lg shadow-md hover:bg-black hover:text-lavender transition-colors duration-500">
-          Get Diet Plan
+          Generate Diet Plan
         </Button>
       </form>
     </Form>

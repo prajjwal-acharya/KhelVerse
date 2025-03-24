@@ -39,11 +39,11 @@ const config = {
       },
       colors: {
         lavender: '#C2C3FB',
+        violet: '#150721',
         purple: '#8E47FF',
         pastelBlue: '#AFC7FF',
         pastelYellow: '#FFF3C9',
         peach: '#FFCCAF',
-        violet: '#150721',
         blue: '#4C9FF8',
         dustypink:'#9f87b6a1',
         background: 'hsl(var(--background))',
@@ -57,9 +57,9 @@ const config = {
           foreground: 'hsl(var(--popover-foreground))',
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
+					DEFAULT: 'hsl(var(--primary))',
+					foreground: 'hsl(var(--primary-foreground))'
+				},
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))',
@@ -95,12 +95,19 @@ const config = {
         montserrat: 'var(--font-montserrat)',
         mindglow: 'var(--font-mindglow)',
         onfarming: 'var(--font-onfarming)',
+        sans: ['Inter', 'sans-serif'],
+        display: ['SPINTURA', 'Inter', 'sans-serif'],
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      boxShadow: {
+				'subtle': '0 2px 10px rgba(0, 0, 0, 0.05)',
+				'card': '0 4px 20px rgba(0, 0, 0, 0.08)',
+				'elevated': '0 10px 30px rgba(0, 0, 0, 0.1)'
+			},
     },
   },
   plugins: [addVariablesForColors, tailwindAnimate],
