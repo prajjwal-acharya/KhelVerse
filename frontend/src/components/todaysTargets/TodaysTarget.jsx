@@ -80,9 +80,7 @@ const TodaysTarget = () => {
   };
 
   return (
-    <div className="p-6 bg-black rounded-lg shadow-lg text-white">
-      <h2 className="text-2xl font-semibold text-white mb-4">Today's Tasks</h2>
-
+    <div className="p-6 bg-black rounded-lg shadow-lg text-white max-w-[800px] mx-auto">
       {/* Add Task Input at the top */}
       <div className="flex items-center space-x-4 mb-4">
         <Input
@@ -91,20 +89,20 @@ const TodaysTarget = () => {
           placeholder="Add a new task"
           className="text-white"
         />
-        <Button onClick={handleAddTask} className="bg-lavender text-black">Add Task</Button>
+        <Button onClick={handleAddTask} className="bg-lavender text-black hover:bg-black hover:text-lavender hover:border-lavender border-[2px] border-black transition-all duration-500">Add Task</Button>
       </div>
 
       <div className="space-y-4">
         <ul className="space-y-3">
           {tasks.map((task) => (
-            <li key={task.taskId} className="flex items-center justify-between text-white p-4 rounded-lg bg-lavender/20">
+            <li key={task.taskId} className="flex items-center justify-between text-white py-4 px-7 rounded-lg bg-lavender/20">
               <div className="flex items-center space-x-3">
                 <Checkbox checked={task.completed} onCheckedChange={() => handleToggleTask(task.taskId)} />
                 <span className={task.completed ? 'line-through text-gray-400' : ''}>{task.taskId}</span>
               </div>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button variant="destructive" className="p-2 text-sm" onClick={() => setTaskToDelete(task)}>
+                  <Button variant="destructive" className="p-2 text-sm bg-[#8c8dbc] text-black" onClick={() => setTaskToDelete(task)}>
                     <X className="w-4 h-4" />
                   </Button>
                 </AlertDialogTrigger>
