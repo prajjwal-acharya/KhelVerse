@@ -7,6 +7,9 @@ apts-chatbot-api/**/venv/
 raw_models/**/venv/
 raw_models/**/__pycache__/
 raw_models/**/Lib/site-packages/
+venv/
+**/venv/
+
 
 # Ignore any other common files
 *.log
