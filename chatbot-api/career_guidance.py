@@ -1,100 +1,125 @@
 import os
-import google.generativeai as genai
+import logging
+import json
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
+import google.generativeai as genai
 from dotenv import load_dotenv
+import re
 
-# Load API Key
+# Load environment variables
 load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+# Retrieve API Key
+API_KEY = os.getenv("GEMINI_API_KEY")
+if not API_KEY:
+    raise ValueError("❌ Missing GEMINI_API_KEY. Please set it in the .env file.")
 
 # Configure Gemini AI
-genai.configure(api_key=GEMINI_API_KEY)
+genai.configure(api_key=API_KEY)
+model = genai.GenerativeModel("gemini-2.0-flash")
 
-# Initialize FastAPI Router
+# Initialize API Router
 router = APIRouter()
 
-def generate_career_recommendation(sport, level, experience, goal, education_interest, skills):
-    """Fetch top 3 career paths with a detailed step-wise roadmap from Gemini AI."""
-    
-    prompt = f"""
-    Based on the following athlete details, suggest the **top 3 best-suited career paths in the Indian sports ecosystem** with a **highly detailed step-by-step roadmap** for each:
-    
-    - **Sport:** {sport}
-    - **Competition Level:** {level}
-    - **Experience:** {experience} years
-    - **Career Goal:** {goal}
-    - **Interested in Higher Education:** {education_interest}
-    - **Skills & Certifications:** {skills}
-    
-    **Output Format:**
-    Return a JSON response structured like this:
-    ```json
-    {{
-      "career_guidance": [
+# Configure Logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
+# Define Request Model
+class CareerQuery(BaseModel):
+    sport: str  # Example: "Swimming"
+    level: str  # Example: "National"
+    experience: int  # Years of experience
+    goal: str  # Example: "Become a coach"
+    education_interest: str  # Example: "Yes" or "No"
+    skills: str  # Example: "Certified in sports nutrition, Basic physiotherapy knowledge"
+
+# Function to extract JSON from AI response
+def extract_json(response_text: str) -> dict:
+    """Extract JSON from the AI response safely."""
+    try:
+        json_match = re.search(r"\{.*\}", response_text, re.DOTALL)
+        if json_match:
+            json_str = json_match.group(0)
+            return json.loads(json_str)
+        else:
+            raise ValueError("No valid JSON found in AI response.")
+    except Exception as e:
+        logging.error(f"⚠️ Error parsing AI JSON response: {e}")
+        return {"error": "AI response did not return valid JSON."}
+
+# AI-based Career Advice Generation
+# AI-based Career Advice Generation
+def generate_career_advice(career_query: CareerQuery) -> dict:
+    try:
+        prompt = f"""
+        Based on the following athlete details, suggest the **top 3 best-suited career paths in the Indian sports ecosystem** with a **step-by-step roadmap** for each:
+        - **Sport:** {career_query.sport}
+        - **Competition Level:** {career_query.level}
+        - **Experience:** {career_query.experience} years
+        - **Career Goal:** {career_query.goal}
+        - **Interested in Higher Education:** {career_query.education_interest}
+        - **Skills & Certifications:** {career_query.skills}
+
+        Consider the Indian sports landscape, including government schemes, sports academies, job opportunities, and sponsorships available in India. Provide:
+        1. **Career Path Name**
+        2. **Why it fits the athlete** (specific to India)
+        3. **Step-by-step roadmap** to achieve this career (including relevant Indian organizations, courses, and funding options)
+
+        **Response Format (JSON):**
+        ```json
         {{
-          "career_path": "Career Path Name",
-          "why_fits": "A detailed explanation of why this career is suitable for the athlete in India, considering current industry trends, market demand, and athlete skills.",
-          "roadmap": [
+          "career_guidance": [
             {{
-              "step_number": 1,
-              "title": "Step 1 Title",
-              "description": "Step 1 detailed explanation, including key actions, possible resources, certification programs, Indian institutes, funding options, or practical tips."
-            }},
-            {{
-              "step_number": 2,
-              "title": "Step 2 Title",
-              "description": "Step 2 detailed explanation with actionable steps and real-world examples relevant to the Indian sports industry."
-            }},
-            {{
-              "step_number": 3,
-              "title": "Step 3 Title",
-              "description": "Step 3 detailed explanation, including long-term growth opportunities and specialization."
+              "career_path": "Career Path Name",
+              "why_fits": "Why this career is a good fit in India based on market demand and athlete skills.",
+              "roadmap": [
+                {{
+                  "step_number": 1,
+                  "title": "Step 1 Title",
+                  "description": "Actionable step with relevant Indian institutes, certifications, or funding."
+                }},
+                {{
+                  "step_number": 2,
+                  "title": "Step 2 Title",
+                  "description": "Concise action with details on local opportunities or training programs."
+                }},
+                {{
+                  "step_number": 3,
+                  "title": "Step 3 Title",
+                  "description": "Long-term goals or specialization options focused on India's sports ecosystem."
+                }}
+              ]
             }}
           ]
-        }},
-        ...
-      ]
-    }}
-    ```
-    
-    **Important Instructions for the AI:**
-    - Each roadmap step should have a **clear title** (e.g., "Get Certified as a Coach").
-    - Each **description should be at least 4-6 sentences long** with practical guidance.
-    - Mention relevant **Indian institutes, government schemes, or job opportunities** where applicable.
-    - Ensure **step-wise progression** from beginner-level actions to expert-level mastery.
+        }}
+        ```
+        - Each step should be **short but actionable**.
+        - Advice must remain **practical and relevant** for athletes in **India**.
+        - Return only **valid JSON**.
+        """
 
-    **Avoid:**
-    - Generic or vague responses.
-    - Listing all steps in one paragraph.
-    - Ignoring India-specific details.
-    """
-    
-    model = genai.GenerativeModel("gemini-2.0-flash")
-    response = model.generate_content(prompt)
-    
-    try:
-        structured_data = eval(response.text)  # Convert Gemini's response into a dictionary
-        return structured_data
+        response = model.generate_content(prompt)
+
+        if not response or not response.text:
+            raise ValueError("AI response is empty.")
+
+        response_text = response.text.strip()
+        return extract_json(response_text)  # Extract only valid JSON
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error parsing response: {str(e)}")
+        logging.error(f"❌ Error in AI response: {str(e)}")
+        return {"error": "Failed to generate career advice."}
 
-# FastAPI Endpoint
-@router.post("/generate_career/")
-async def get_career_guidance(data: dict):
-    """API endpoint to get career guidance for an athlete."""
+
+# Career Advice Endpoint
+@router.post("/generate_career_advice/")
+async def generate_career(career_query: CareerQuery):
     try:
-        sport = data.get("sport")
-        level = data.get("level")
-        experience = data.get("experience")
-        goal = data.get("goal")
-        education_interest = data.get("education_interest")
-        skills = data.get("skills")
-
-        if not all([sport, level, experience, goal, education_interest, skills]):
-            raise HTTPException(status_code=400, detail="Missing required fields!")
-
-        result = generate_career_recommendation(sport, level, experience, goal, education_interest, skills)
-        return result
-
+        logging.info(f"📩 Received Career Advice Request: {career_query}")
+        career_advice = generate_career_advice(career_query)
+        return JSONResponse(content=career_advice, status_code=200)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logging.error(f"❌ Error Processing Request: {str(e)}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+      
