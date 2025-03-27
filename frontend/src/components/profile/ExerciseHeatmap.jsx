@@ -6,6 +6,7 @@ import 'react-calendar-heatmap/dist/styles.css';
 import { Tooltip } from 'react-tooltip';
 import { format, subDays, eachDayOfInterval, isToday } from 'date-fns';
 import { setTasks } from '@/config/slices/taskSlice';
+import { BarChart, Calendar } from "lucide-react";
 
 // Set date range (last 365 days)
 const today = new Date();
@@ -43,7 +44,34 @@ const Heatmap = () => {
     return `color-scale-${Math.min(value.count, 5)}`;
   };
 
+  //DATA CALCULATIONS
+  const totalExercises = finalData.reduce((acc, day) => acc + day.count, 0);
+  const activeDays = finalData.filter((day) => day.count > 0).length;
+  const avgPerActiveDay = activeDays > 0 ? (totalExercises / activeDays).toFixed(2) : 0;
+
   return (
+    <div className="glass rounded-xl p-6 opacity-0 animate-slide-up-delay-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div className="flex items-center gap-2">
+          <Calendar className="h-5 w-5 text-purple-light" />
+          <h2 className="text-xl font-bold">Exercise Activity</h2>
+        </div>
+        
+        <div className="flex flex-wrap gap-4">
+          <div className="px-3 py-1.5 rounded-lg bg-[#232323]">
+            <p className="text-xs text-muted-foreground">Total Exercises</p>
+            <p className="text-lg font-bold">{totalExercises}</p>
+          </div>
+          <div className="px-3 py-1.5 rounded-lg bg-[#232323]">
+            <p className="text-xs text-muted-foreground">Active Days</p>
+            <p className="text-lg font-bold">{activeDays}</p>
+          </div>
+          <div className="px-3 py-1.5 rounded-lg bg-[#232323]">
+            <p className="text-xs text-muted-foreground">Avg per Active Day</p>
+            <p className="text-lg font-bold">{avgPerActiveDay}</p>
+          </div>
+        </div>
+      </div>
     <div className="w-full flex items-center justify-center min-h-[150px] h-auto py-2">
       <div className="p-4 w-full h-full shadow-md rounded-lg bg-black">
         <CalendarHeatmap
@@ -63,8 +91,11 @@ const Heatmap = () => {
         <Tooltip id="task-tooltip" />
       </div>
     </div>
+    </div>
   );
 };
 
 export default Heatmap;
+
+
 
