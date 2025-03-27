@@ -67,4 +67,3 @@ const Heatmap = () => {
 };
 
 export default Heatmap;
-
