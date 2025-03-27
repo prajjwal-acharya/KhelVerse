@@ -1,4 +1,4 @@
-import CoachMain from '@/components/dashboard/coach/CoachMain';
+import CoachMain from '@/components/dashboard/coach/CoachHeader';
 import React from 'react';
 
 function page() {
