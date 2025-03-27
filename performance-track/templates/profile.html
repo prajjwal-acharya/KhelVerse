@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Athlete Profile</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f4f4f4;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+        }
+
+        img {
+            border-radius: 50%;
+            width: 120px;
+            margin-bottom: 1rem;
+        }
+
+        .button {
+            margin-top: 2rem;
+            display: inline-block;
+            padding: 12px 24px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.2s ease-in-out;
+        }
+
+        .button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <img src="{{ athlete.profile }}" alt="Profile Picture">
+        <h2>{{ athlete.firstname }} {{ athlete.lastname }}</h2>
+        <p><strong>Username:</strong> {{ athlete.username or "N/A" }}</p>
+        <p><strong>Gender:</strong> {{ athlete.sex }}</p>
+        <p><strong>Weight:</strong> {{ athlete.weight }} kg</p>
+        <p><strong>Location:</strong> {{ athlete.city or "N/A" }}, {{ athlete.country or "N/A" }}</p>
+
+        <a href="/dashboard" class="button">📊 View Activity Dashboard</a>
+    </div>
+
+</body>
+</html>
