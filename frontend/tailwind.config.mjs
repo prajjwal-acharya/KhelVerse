@@ -11,13 +11,6 @@ const config = {
   ],
   darkMode: 'class',
   theme: {
-    container: {
-			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px'
-			}
-		},
     extend: {
       animation: {
         shimmer: 'shimmer 2s linear infinite',
@@ -97,17 +90,6 @@ const config = {
 					}
 				}
       },
-      animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.4s ease-out forwards',
-				'slide-up': 'slide-up 0.5s ease-out forwards',
-				'slide-up-delay-1': 'slide-up 0.5s ease-out 0.1s forwards',
-				'slide-up-delay-2': 'slide-up 0.5s ease-out 0.2s forwards',
-				'slide-up-delay-3': 'slide-up 0.5s ease-out 0.3s forwards',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
-			},
-
       colors: {
         violet: '#150721',
 
@@ -145,7 +127,6 @@ const config = {
         dustypink:'#9f87b6a1',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

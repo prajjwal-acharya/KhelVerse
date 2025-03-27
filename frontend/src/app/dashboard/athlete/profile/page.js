@@ -1,13 +1,7 @@
-import ProfileMain from '@/components/profile/ProfileMain';
-import { mockAthlete } from "@/content/exerciseData";
 import React from 'react';
 
 function page() {
-  return (
-    <div className="min-h-screen bg-background">
-      <ProfileMain athlete={mockAthlete} />
-    </div>
-  );
+  return <div>This is the profile page</div>;
 }
 
 export default page;
