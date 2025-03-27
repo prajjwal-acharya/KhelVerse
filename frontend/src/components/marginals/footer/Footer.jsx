@@ -1,43 +1,98 @@
+'use client';
 import React from 'react';
-import { FaLinkedin, FaGithub, FaInstagram, FaEnvelope, FaXTwitter } from 'react-icons/fa6';
+import { Twitter, Instagram, Linkedin, Mail, Github } from 'lucide-react';
 
-export default function Footer() {
+const Footer = () => {
   return (
-    <footer className='bg-black text-white py-8 px-4'>
-      <div className='w-full mx-auto flex flex-col items-center h-auto'>
-        {/* Top Section */}
-        <div className='w-full flex flex-wrap justify-around text-sm text-gray-300 mb-8'>
-          <div className='text-center md:text-left'>
-            <h3 className='font-bold text-xl mt-2'>Company</h3>
-            <p className='my-1 text-md'>Home</p>
-            <p className='my-1'> Sign Up</p>
-          </div>
-          <div className='text-center md:text-left'>
-            <h3 className='font-bold text-xl mt-2'>Further Information</h3>
-            <p className='my-1'>Terms and Condition</p>
-            <p className='my-1'>Sign Up</p>
-          </div>
-
-          <div className='text-center md:text-left'>
-            <h3 className='font-bold text-xl mt-4 sm:mt-2'>Let's Connect!</h3>
-            <div className='flex justify-center md:justify-start space-x-4 py-2 mt-2'>
-              <FaLinkedin className='text-xl' />
-              <FaGithub className='text-xl' />
-              <FaInstagram className='text-xl' />
-              <FaEnvelope className='text-xl' />
-              <FaXTwitter className='text-xl' />
+    <footer className="bg-apts-darker pt-16 pb-8 relative z-10">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+          <div className="md:col-span-1">
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="w-8 h-8 rounded-md bg-lavender-600 flex items-center justify-center">
+                <span className="font-bold text-white">A</span>
+              </div>
+              <span className="text-white font-bold text-xl font-sprintura">APTS</span>
+            </div>
+            <p className="text-white/60 mb-6 font-thuast">
+              TRACK. TRAIN. TRIUMPH.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-white/60 hover:text-lavender-400 transition-colors">
+                <Twitter size={20} />
+              </a>
+              <a href="#" className="text-white/60 hover:text-lavender-400 transition-colors">
+                <Instagram size={20} />
+              </a>
+              <a href="#" className="text-white/60 hover:text-lavender-400 transition-colors">
+                <Linkedin size={20} />
+              </a>
+              <a href="#" className="text-white/60 hover:text-lavender-400 transition-colors">
+                <Github size={20} />
+              </a>
             </div>
           </div>
+          
+          <div>
+            <h4 className="font-medium text-white mb-4">Product</h4>
+            <ul className="space-y-3">
+              {['Features', 'Pricing', 'Case Studies', 'Reviews'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-medium text-white mb-4">Company</h4>
+            <ul className="space-y-3">
+              {['About', 'Team', 'Careers', 'Press'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="font-medium text-white mb-4">Resources</h4>
+            <ul className="space-y-3">
+              {['Blog', 'Documentation', 'Help Center', 'Contact'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
-        {/* Bottom Section */}
-        <div className='border-t border-gray-800 w-full my-6 text-center py-4'>
-          <h2 className='py-3 text-xl sm:text-3xl font-sprintura'>TRACK.TRAIN.TRIUMPH.</h2>
-          <p className='mt-2 font-bold text-l'>
-            Made with ✨ by Team <span className='font-sprintura px-1'>APTS</span>
+        
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-white/60 text-sm mb-4 md:mb-0">
+            &copy; {new Date().getFullYear()} APTS. All rights reserved.
           </p>
+          
+          <div className="flex space-x-6">
+            <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
+              Terms of Service
+            </a>
+            <a href="#" className="text-white/60 hover:text-white transition-colors text-sm">
+              Data Policy
+            </a>
+          </div>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

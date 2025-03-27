@@ -86,10 +86,11 @@ html {
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border selection:bg-lavender-500/20 selection:text-lavender-100;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 }
 
@@ -150,5 +151,17 @@ html {
   
   .text-balance {
     text-wrap: balance;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-[1.01];
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-lavender-300 via-lavender-400 to-lavender-500 bg-clip-text text-transparent;
   }
 }
