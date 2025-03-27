@@ -1,0 +1,29 @@
+strava-dashboard/
+│
+├── app.py                       # Main Flask app: routes, app config
+├── models.py                   # SQLAlchemy models for DB tables
+├── .env                        # Strava API credentials (CLIENT_ID, SECRET, etc.)
+├── strava.db                   # SQLite database (auto-created)
+│
+├── templates/                  # Jinja2 HTML templates
+│   ├── home.html               # Landing page with "Connect with Strava"
+│   ├── dashboard.html          # Chart.js dashboard (distance & duration)
+│
+├── static/                     # (Optional) For custom CSS/JS/images
+│
+├── requirements.txt            # All project dependencies
+│
+└── README.md                   # Project overview, setup, usage instructions
+
+
+
+Performance Analysis and Tracking:
+*Our user profile is shown in a minimalist way
+*It also has: Heatmap, streakcount, achievements (Basic)
+*It has Distance, Duration, Calories Graphs [DONE]
+and an aggregate of all time datas of that athlete
+*Give comparision with general average data of athletes
+*Each of the data for individual activity is shown
+in form of clickable cards
+*An ability to set the goal for a week/month 
+*Landing page should motivate him to stick to his/her goals

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Athlete Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #f9f9f9;
+            padding: 2rem;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        .nav {
+            margin-bottom: 2rem;
+        }
+
+        .nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        .card {
+            background: white;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+
+        canvas {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Athlete Activity Dashboard</h1>
+
+    <div class="nav">
+        <a href="/profile">👤 View Profile</a>
+        <a href="/activities">🔄 Sync Activities</a>
+    </div>
+
+    <!-- 📊 Summary Cards -->
+    <div style="display: flex; gap: 20px; margin-bottom: 2rem; flex-wrap: wrap;">
+        <div class="card"><strong>Total Activities:</strong> {{ total_activities }}</div>
+        <div class="card"><strong>Total Distance:</strong> {{ "%.2f"|format(total_distance) }} km</div>
+        <div class="card"><strong>Total Duration:</strong> {{ "%.1f"|format(total_duration / 60) }} hrs</div>
+        <div class="card"><strong>Avg Speed:</strong> {{ avg_speed }} m/s</div>
+        <div class="card"><strong>Avg Heart Rate:</strong> {{ avg_hr }} bpm</div>
+    </div>
+
+    <!-- 🚀 Goal Form -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <h3>🚀 Set Your Distance Goals</h3>
+        <form method="POST" action="/set-goal">
+            <label for="weekly">Weekly Goal (km):</label><br>
+            <input type="number" step="0.1" id="weekly" name="weekly" required><br><br>
+
+            <label for="monthly">Monthly Goal (km) <small>(optional)</small>:</label><br>
+            <input type="number" step="0.1" id="monthly" name="monthly"><br><br>
+
+            <button type="submit" style="padding: 8px 16px; background: #28a745; color: white; border: none; border-radius: 5px;">
+                ✅ Save Goals
+            </button>
+        </form>
+    </div>
+
+    <!-- 🏁 Goal Tracking -->
+    {% if distance_goal %}
+    <div class="card" style="margin-bottom: 2rem;">
+        <strong>📅 Monthly Goal:</strong> {{ distance_goal }} km<br>
+        <strong>Progress:</strong> {{ goal_progress }}%
+        <div style="width: 100%; background: #eee; border-radius: 6px; overflow: hidden; margin-top: 5px;">
+            <div style="width: {{ goal_progress }}%; background: #28a745; color: white; padding: 5px 0; text-align: center;">
+                {{ goal_progress }}%
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if weekly_goal %}
+    <div class="card" style="margin-bottom: 2rem;">
+        <strong>🗓️ Weekly Goal:</strong> {{ weekly_goal }} km<br>
+        <strong>Progress:</strong> {{ week_progress }}%
+        <div style="width: 100%; background: #eee; border-radius: 6px; overflow: hidden; margin-top: 5px;">
+            <div style="width: {{ week_progress }}%; background: #007bff; color: white; padding: 5px 0; text-align: center;">
+                {{ week_progress }}%
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- 📊 Graphs -->
+    <canvas id="distanceChart"></canvas>
+    <canvas id="timeChart"></canvas>
+    <canvas id="caloriesChart"></canvas>
+
+    <!-- 🃏 Activity Cards -->
+    <h2>Recent Activities</h2>
+    {% for act in activities %}
+        <div class="card">
+            <h3>{{ act.name }} ({{ act.type }})</h3>
+            <p><strong>Date:</strong> {{ act.start_date[:10] }}</p>
+            <p><strong>Distance:</strong> {{ "%.2f" | format(act.distance / 1000) }} km</p>
+            <p><strong>Time:</strong> {{ act.moving_time // 60 }} min</p>
+            <p><strong>Calories:</strong> {{ act.calories or 'N/A' }}</p>
+            <p><strong>Avg Speed:</strong> {{ "%.2f" | format(act.average_speed or 0) }} m/s</p>
+            <p><strong>Heart Rate:</strong> {{ act.average_heartrate or 'N/A' }}</p>
+            <p><strong>Cadence:</strong> {{ act.average_cadence or 'N/A' }}</p>
+            <p><strong>Watts:</strong> {{ act.average_watts or 'N/A' }}</p>
+        </div>
+    {% endfor %}
+
+    <!-- 📈 Graph Rendering -->
+    <script>
+        const labels = [{% for label in labels %}'{{ label }}'{% if not loop.last %}, {% endif %}{% endfor %}];
+        const distances = [{% for d in distances %}{{ d }}{% if not loop.last %}, {% endif %}{% endfor %}];
+        const durations = [{% for t in durations %}{{ t }}{% if not loop.last %}, {% endif %}{% endfor %}];
+        const calories = [{% for c in calories %}{{ c }}{% if not loop.last %}, {% endif %}{% endfor %}];
+
+        new Chart(document.getElementById('distanceChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Distance (km)',
+                    data: distances,
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        new Chart(document.getElementById('timeChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Duration (min)',
+                    data: durations,
+                    borderColor: 'green',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        new Chart(document.getElementById('caloriesChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Calories Burned',
+                    data: calories,
+                    borderColor: 'red',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    </script>
+
+</body>
+</html>
