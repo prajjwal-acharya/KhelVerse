@@ -1,155 +1,87 @@
 'use client';
-
-import { FlipCard } from '../shared/FlipCards/FlipCard';
+import React from 'react'
+import FeatureCard from '@/components/landingPage/FeatureCard';
+import { 
+    Activity, 
+    Dumbbell,
+    CalendarDays,
+    ShieldCheck,
+    Salad,
+    Coins
+  } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
-export default function Features() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.5 },
-    );
-
-    const section = document.getElementById('features-section');
-    if (section) observer.observe(section);
-
-    return () => {
-      if (section) observer.unobserve(section);
-    };
-  }, []);
-
-  const letterAnimation = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.1, duration: 0.2, repeat: Infinity, repeatDelay: 2 },
-    }),
-  };
-
+ const Features = () => {
   return (
-    <div>
-      <div className='relative w-full h-[50px] bg-white'>
-        <div
-          className='absolute w-full h-full bg-black'
-          style={{ clipPath: 'polygon(100% 0%, 0% 100%, 100% 100%)' }}
-        ></div>
-      </div>
-      <div id='features-section' className='flex flex-col sm:flex-row h-full w-full bg-black'>
-        {/* Left Section */}
-        <div className='w-full h-[150px] sm:w-[40%] sm:h-auto flex flex-col items-center justify-center mt-10 text-white'>
-          <motion.h1 className='font-bold font-thuast text-2xl sm:text-4xl flex  p-2 transform sm:rotate-[-10deg]'>
-            {'FEATURES'.split('').map((letter, i) => (
-              <motion.span
-                key={i}
-                custom={i}
-                initial='hidden'
-                animate={isVisible ? 'visible' : 'hidden'}
-                variants={letterAnimation}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </motion.h1>
-
-          <motion.h2 className='font-bold font-thuast text-xl sm:text-2xl p-2 flex flex-wrap justify-center text-center transform sm:rotate-[-10deg]'>
-            {'LIKE  NOWHERE  ELSE...'.split(' ').map((word, wordIndex) => (
-              <span key={wordIndex} className='flex'>
-                {word.split('').map((letter, letterIndex) => (
-                  <motion.span
-                    key={`${wordIndex}-${letterIndex}`}
-                    custom={letterIndex}
-                    initial='hidden'
-                    animate={isVisible ? 'visible' : 'hidden'}
-                    variants={letterAnimation}
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
-                &nbsp; {/* Space between words */}
-              </span>
-            ))}
-          </motion.h2>
+    <section id="features" className="py-20 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-[10%] left-[20%] w-[50%] h-[50%] rounded-full bg-lavender-600/5 blur-[100px]"></div>
         </div>
-
-        {/* Right Section */}
-        <div className='w-full 2xl:w-[1100px] h-auto py-[50px] flex flex-col bg-black justify-center gap-6 pt-20'>
-          <div className='flex justify-center gap-6 flex-wrap'>
-            {/* Performance Evaluation FlipCard */}
-            <FlipCard
-              titleFront='PERFORMANCE EVALUATION'
-              frontText='Measure. Improve. Excel.'
-              titleBack=''
-              backText='AI-powered daily targets push athletes to their limits, tracking progress with precision. Based on task completion, personalized insights and smart suggestions fuel continuous improvement. '
-              frontImage='https://res.cloudinary.com/dpmlrxlzr/image/upload/v1742152499/jonathan-borba-R0y_bEUjiOM-unsplash_zn4hf0.jpg'
-              gradientBack='from-transparent to-lavender/60'
-              className='w-[250px] h-[250px] md:w-[300px] md:h-[300px] p-2'
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-2xl mx-auto text-center mb-16">
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4 text-white font-thuast"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              Cutting-Edge <span className="text-gradient">Features</span>
+            </motion.h2>
+            <motion.p 
+              className="text-white/70"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
+             Unlock Peak Performance with the Power of Innovation Driving Every Step Forward!
+            </motion.p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <FeatureCard 
+              icon={Activity}
+              title="Performance Evaluation"
+              description="AI-powered targets enhance performance with precise tracking, insights, and real-time analysis of vital metrics and training loads."
+              delay={0.1}
             />
-
-            {/* Diet Plans FlipCard */}
-            <FlipCard
-              titleFront='DIET PLANS'
-              frontText='Fuel Your Body, Boost Your Game'
-              titleBack=''
-              backText='Get personalized meal plans based on your fitness targets and body requirements, ensuring optimal nutrition for peak performance. '
-              frontImage='https://res.cloudinary.com/dpmlrxlzr/image/upload/v1742150882/louis-hansel-MlPD-AzZYMg-unsplash_io6m80.jpg'
-              gradientBack='from-transparent to-lavender/60'
-              className='w-[250px] h-[250px] md:w-[300px] md:h-[300px] p-2'
+                        <FeatureCard 
+              icon={Salad}
+              title="Diet Plans"
+              description="Get personalized meal plans based on your fitness targets and body requirements, ensuring optimal nutrition for peak performance."
+              delay={0.2}
             />
-
-            {/* Live Training Sessions FlipCard */}
-            <FlipCard
-              titleFront='LIVE TRAINING SESSIONS'
-              frontText='Train Smart, Train Live'
-              titleBack=''
-              backText='Experience interactive live training sessions that analyze your movements in real-time, providing instant feedback to help you maintain the perfect workout form!'
-              frontImage='https://res.cloudinary.com/dpmlrxlzr/image/upload/v1742152471/pexels-victorfreitas-841130_fgberk.jpg'
-              gradientBack='from-transparent to-lavender/60'
-              className='w-[250px] h-[250px] md:w-[300px] md:h-[300px] p-2 '
+            <FeatureCard 
+              icon={Dumbbell}
+              title="Live Training Sessions"
+              description="Experience live training sessions with real-time movement analysis and instant feedback to maintain optimal workout form."
+              delay={0.3}
             />
-
-            {/* Injury Management FlipCard */}
-            <FlipCard
-              titleFront='INJURY MANANGEMENT'
-              frontText='Recover Stronger, Play Longer.'
-              titleBack=''
-              backText='Injury history analysis tracks past incidents, evaluating frequency and severity to assess current risks. Personalized recovery plans ensure safer, stronger comebacks.'
-              frontImage='https://res.cloudinary.com/dpmlrxlzr/image/upload/v1742152745/pexels-olly-3760275_z37zc7.jpg'
-              gradientBack='from-transparent to-lavender/60'
-              className='w-[250px] h-[250px] md:w-[300px] md:h-[300px] p-2'
+            <FeatureCard 
+              icon={ShieldCheck}
+              title="Injury Management"
+              description="Injury analysis evaluates past incidents to assess risks, while personalized recovery plans ensure safer, stronger comebacks."
+              delay={0.4}
             />
-
-            {/* Events FlipCard */}
-            <FlipCard
-              titleFront='EVENTS'
-              frontText='Compete, Celebrate, Conquer'
-              titleBack=''
-              backText='Engage in dynamic competitions and celebrate victories. Get real-time updates on upcoming events, personalized participation suggestions, and performance highlights.'
-              frontImage='https://res.cloudinary.com/dpmlrxlzr/image/upload/v1742211025/pexels-karolina-grabowska-6345328_dgzjgs.jpg'
-              gradientBack='from-transparent to-lavender/60'
-              className='w-[250px] h-[250px] md:w-[300px] md:h-[300px] p-2'
+            <FeatureCard 
+              icon={CalendarDays}
+              title="Events"
+              description="Engage in competitions and celebrate victories with real-time event updates, personalized suggestions, and performance highlights."
+              delay={0.5}
             />
-
-            {/* Finance FlipCard */}
-            <FlipCard
-              titleFront='FINANCE ASSISTANCE'
-              frontText='Plan Smart, Play Hard'
-              titleBack=''
-              backText='Get tailored financial guidance for managing expenses, securing sponsorships, and accessing exclusive funding opportunities. Empower your athletic journey with financial confidence.'
-              frontImage='https://res.cloudinary.com/dpmlrxlzr/image/upload/v1742211026/pexels-ravi-roshan-2875998-14907377_diqxsg.jpg'
-              gradientBack='from-transparent to-lavender/60'
-              className='w-[250px] h-[250px] md:w-[300px] md:h-[300px] p-2'
+            <FeatureCard 
+              icon={Coins}
+              title="Finance Assistance"
+              description="Receive tailored financial guidance for expense management, sponsorships, and exclusive funding, empowering your athletic journey."
+              delay={0.6}
             />
           </div>
         </div>
-      </div>
-    </div>
-  );
+      </section>
+
+  )
 }
+
+export default Features;

@@ -62,7 +62,7 @@ function HeroSection() {
         {/* Changing Word Effect */}
         <h2 className='md:text-[48px] text-[35px] font-thuast'>
           <span
-            className='inline-block text-lavender'
+            className='inline-block text-gradient'
             style={{ width: '370px', textAlign: 'center' }}
           >
             <motion.span
