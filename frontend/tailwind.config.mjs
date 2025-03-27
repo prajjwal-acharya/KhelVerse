@@ -11,13 +11,6 @@ const config = {
   ],
   darkMode: 'class',
   theme: {
-    container: {
-			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px'
-			}
-		},
     extend: {
       animation: {
         shimmer: 'shimmer 2s linear infinite',
@@ -43,72 +36,11 @@ const config = {
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
         },
-        'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
-				},
-				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				},
-				'fade-in': {
-					from: {
-						opacity: '0',
-						transform: 'translateY(10px)'
-					},
-					to: {
-						opacity: '1',
-						transform: 'translateY(0)'
-					}
-				},
-				'slide-up': {
-					from: {
-						opacity: '0',
-						transform: 'translateY(20px)'
-					},
-					to: {
-						opacity: '1',
-						transform: 'translateY(0)'
-					}
-				},
-				'pulse-glow': {
-					'0%, 100%': {
-						opacity: '1'
-					},
-					'50%': {
-						opacity: '0.7'
-					}
-				}
       },
-      animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 0.4s ease-out forwards',
-				'slide-up': 'slide-up 0.5s ease-out forwards',
-				'slide-up-delay-1': 'slide-up 0.5s ease-out 0.1s forwards',
-				'slide-up-delay-2': 'slide-up 0.5s ease-out 0.2s forwards',
-				'slide-up-delay-3': 'slide-up 0.5s ease-out 0.3s forwards',
-				'pulse-glow': 'pulse-glow 2s ease-in-out infinite'
-			},
-
       colors: {
         lavender: '#C2C3FB',
         violet: '#150721',
-
-        purple: {
-					DEFAULT: '#8E47FF',
-					light: '#9b87f5',
-					dark: '#4A3D70'
-				},
-
+        purple: '#8E47FF',
         pastelBlue: '#AFC7FF',
         pastelYellow: '#FFF3C9',
         peach: '#FFCCAF',
@@ -116,7 +48,6 @@ const config = {
         dustypink:'#9f87b6a1',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
