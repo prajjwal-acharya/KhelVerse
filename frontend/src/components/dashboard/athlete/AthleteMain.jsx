@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import AthleteHero from './AthleteHero';
 import AthleteBody from './AthleteBody';
